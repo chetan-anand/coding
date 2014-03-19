@@ -1,0 +1,29 @@
+// By Anudeep :)
+/*
+	Prepare adjacency list of childs
+	Do HL
+		For HL I need child count. Do DFS
+	write code for segtree update and query
+		Test this first and carry on.
+	write code for tree update
+	Update all N nodes
+		Test current state of segtrees
+	Wrtie tree query
+	process queries
+	Submit and start preparation for 2maro's exam
+*/
+
+2
+6 7
+3 1 3 4 4
+1
+5
+6
+1
+3
+5
+2
+2 2
+1
+2
+1
