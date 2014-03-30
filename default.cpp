@@ -72,8 +72,10 @@ typedef pair <int,int> pii;
 #define mp make_pair
 #define gi(n) scanf("%d",&n)
 #define gl(n) scanf("%lld",&n)
+#define gs(n) scanf("%s",n);
 #define pi(n) printf("%d\n",n)
 #define pl(n) printf("%lld\n",n)
+#define ps(n) printf("%s\n",n);
 #define rep(i,n) for(int i=0;i<n;i++)
 #define fi(i,a,n) for(int i=a;i<=n;i++)
 #define fd(i,n,a) for(int i=n;i>=a;i--)

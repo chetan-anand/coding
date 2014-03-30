@@ -1,1 +1,2 @@
-ABACAB
+5
+RRRRR
