@@ -1,2 +1,4 @@
 5
 RRRRR
+400-1282360	- transaction id
+881030122492704 - AO
