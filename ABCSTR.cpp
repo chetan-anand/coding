@@ -32,19 +32,19 @@ int main ()
         c += ( s[i] == 'C' );
         p[i] = make_pair( b - a, c - a );
     }
-    cout<<"Bfore\n";
+    /*cout<<"Bfore\n";
     for(int i=0;i<=n;i++)
     {
         printf("%d %d\n",p[i].first,p[i].second );
-    }
+    }*/
 
 
     sort( p, p + n + 1 );
-    cout<<"after\n";
+    /*cout<<"after\n";
     for(int i=0;i<=n;i++)
     {
         printf("%d %d\n",p[i].first,p[i].second );
-    }
+    }*/
 
 
     long long answer = 0, plus = 0;
