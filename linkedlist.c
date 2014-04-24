@@ -77,5 +77,52 @@ int main()
         }
     }
     display(start);
+
+    /*2.    
+    temp=start;
+    while(temp->ptr!=NULL)
+    {
+        temp=temp->ptr;
+    }
+
+    end=temp;
+
+    temp1=createnode();
+    end->ptr=temp1;*/
+
+    /*3.
+    temp=start;
+    temp1=temp->ptr;
+
+    temp2=createnode();
+    temp->ptr=temp2;
+    temp2->ptr=temp1;
+    */
+
+    
+    /*
+    4.
+    temp=start;
+    while(temp->ptr->ptr!=NULL)
+    {
+        temp=temp->ptr;
+    }
+
+    free(temp->ptr);
+    */
+
+    /*
+    5.
+    temp=start->ptr;
+    free(start);
+    start=temp;
+    */
+
+    /*
+    6.
+    display(start);
+    */
+
+    
     return 0;
 }
