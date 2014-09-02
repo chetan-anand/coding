@@ -1,114 +1,55 @@
 #include<bits/stdc++.h>
 using namespace std;
+#define maxn 200000 + 5
 
-#define mod 1000000007
-#define ll long long
-#define ull unsigned long long
-bool ar[100][100];
+int f[maxn], t[maxn], p[maxn], ii, kdepth[maxn], Tn, i, n, x, y, l, r, mid, eaten;
+bool over;
 
-x[110];y[110];
-/*struct Point
-{
-    int x;
-    int y;
-}points[100];*/
-int orientation(Point p, Point q, Point r)
-{
-    int val = (q.y - p.y) * (r.x - q.x) -
-              (q.x - p.x) * (r.y - q.y);
-
-    if (val == 0) return 0;
-
-    return (val > 0)? 1: 2;
+void addedge (int x, int y) {
+	t[++ii] = y;
+	p[ii] = f[x];
+	f[x] = ii;
 }
-bool doIntersect(Point p1, Point q1, Point p2, Point q2)
-{
-    int o1 = orientation(p1, q1, p2);
-    int o2 = orientation(p1, q1, q2);
-    int o3 = orientation(p2, q2, p1);
-    int o4 = orientation(p2, q2, q1);
 
-    if (o1 != o2 && o3 != o4)
-    return 1;
-    else return 0;
+void dfs (int k, int pr, int depth) {
+	++kdepth[depth];
+	int q = f[k];
+	while(q > 0) {
+		if (t[q] != pr) dfs(t[q], k, depth + 1);
+		q = p[q];
+	}
 }
-int main()
-{
-	int t,n,b[3000][100],itr=0,flag;
-	char road[100][100];
-	bool visited[55];
-	fill(visited,visited+55,0);
-		scanf("%d",&n);
-		for(int i=0;i<n;i++)
-		scanf("%d%d",&points[i].x,&points[i].y);
-		gets(road[0]);
-		for(int i=0;i<n;i++)
-		gets(road[i]);
-		for(int i=0;i<n;i++)
-		{
-			for(int j=0;j<n;j++)
-			{
 
-				if(road[i][j]=='Y'&&ar[i][j]==0)
-				{
-					ar[i][j]=1;
-					ar[j][i]=1;
-					b[itr][0]=1;
-					b[itr][1]=i;
-					b[itr][2]=j;
-					visited[i]=1;
-					visited[j]=1;
-					int x=i,y=j;
-					flag=1;
-					while(flag)
-					{
-						flag=0;
-						for(int k=0;k<n;k++)
-						{
-							if(road[y][k]=='Y'&&ar[y][k]==0&&visited[k]==0)
-							{
-								bool a=0;
-								for(int w=1;w<b[itr][0];w++)
-								{
-									a=doIntersect(points[y],points[k],points[b[itr][w]],points[b[itr][w+1]]);
-									if(a==1)
-									break;
-								}
-								if(a==0)
-								{
-									b[itr][0]++;
-									int o=b[itr][0];
-									b[itr][o+1]=k;
-									visited[k]=1;
-									ar[y][k]=1;
-									ar[k][y]=1;
-									flag=1;
-									x=y;
-									y=k;
-								}
-							}
-						}
-					}
-					int xi=b[itr][b[itr][0]+1];
-					int yi=b[itr][1];
-					if(ar[x][y]==0&&road[x][y]=='Y')
-					{
-						b[itr][0]++;
-						b[itr][b[itr][0]+1]=y;
-					}
-					itr++;
-					fill(visited,visited+55,0);
-				}
-			}
+int main (int argc, char * const argv[]) {
+//	freopen("input.txt", "r", stdin);
+    clock_t start = clock();
+	scanf("%d", &Tn);
+	while (Tn--) {
+		ii = 0;
+		for(i = 1; i <= n; i++) f[i] = 0;
+		scanf("%d", &n);
+		for(i = 1; i < n; i++) {
+			scanf("%d %d", &x, &y);
+			addedge(x, y);
+			addedge(y, x);
 		}
-		printf("%d\n",itr);
-		for(int i=0;i<itr;i++)
-		{
-			printf("%d ",b[i][0]);
-			for(int j=1;j<=b[i][0]+1;j++)
-			printf("%d ",b[i][j]);
-			printf("\n");
+		for(i = 1; i <= n; i++) kdepth[i] = 0;
+		dfs(1, -1, 1);
+		l = 1, r = n;
+		while (l < r) {
+			mid = (l + r + 1) / 2;
+			eaten = 0;
+			for(i = 1; i <= (mid + 1) / 2; i++) eaten += kdepth[i];
+			if (n - eaten >= mid - (mid + 1) / 2) over = false; else over = true;
+			if (over) r = mid - 1; else l = mid;
 		}
+		int remain = n;
+		for(i = 1; i <= (l + 1) / 2; i++) remain -= kdepth[i];
+		remain -= l - (l + 1) / 2;
+		if (remain) ++l;
+		printf("%d\n", l);
+	}
+	 while (clock() - start < (1.0 - 0.02) * CLOCKS_PER_SEC);
     return 0;
 }
 
