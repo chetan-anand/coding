@@ -19,40 +19,49 @@ typedef pair <int,int> pii;
 
 ///////////////////////////////////////
 
+inline void fastRead_int(int &x) {
+    register int c = getchar_unlocked();
+    x = 0;
+    int neg = 0;
+
+    for(; ((c<48 || c>57) && c != '-'); c = getchar_unlocked());
+
+    if(c=='-') {
+    	neg = 1;
+    	c = getchar_unlocked();
+    }
+
+    for(; c>47 && c<58 ; c = getchar_unlocked()) {
+    	x = (x<<1) + (x<<3) + c - 48;
+    }
+
+    if(neg)
+    	x = -x;
+}
+
+
 int main()
 {
     //freopen("i.txt","r",stdin);
-    int t,i,j,k;
-
-    cin>>t;
-    while(t--)
+    int n,i,j,k,l;
+    int a,b;
+    //cin>>n;
+    fastRead_int(n);
+    while(n--)
     {
-        string s;
-        cin>>s;
-        int len=s.size();
-        //cout<<len<<endl;
-        len=len/2;
-        int freq[200];
-        memset(freq,0,sizeof(freq));
-        rep(i,len)
+        //cin>>a>>b;
+        fastRead_int(a);
+        fastRead_int(b);
+        int cnt=0;
+        while(a!=b)
         {
-            freq[s[i]]++;
+            if(a>b){a=a>>1;}
+            else{b=b>>1;}
+            cnt++;
         }
-        bool temp=true;
-        //cout<<len<<endl;
-        rep(i,len)
-        {
-            freq[s[s.size()-1-i]]--;
-            if(freq[s[s.size()-1-i]]<0)
-            {
-                temp=false;
-            }
-        }
-        if(temp){cout<<"YES"<<endl;}
-        else{cout<<"NO"<<endl;}
+        cout<<cnt<<endl;
     }
     //fclose(stdin);
 	return 0;
 }
-
 

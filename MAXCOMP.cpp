@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
+
 typedef long long ll;
 typedef unsigned long long llu;
 typedef vector <int> vi;
@@ -22,37 +23,33 @@ typedef pair <int,int> pii;
 int main()
 {
     //freopen("i.txt","r",stdin);
-    int t,i,j,k;
-
+    int n,t,i,j,k,c[50][50],dp[50];
     cin>>t;
     while(t--)
     {
-        string s;
-        cin>>s;
-        int len=s.size();
-        //cout<<len<<endl;
-        len=len/2;
-        int freq[200];
-        memset(freq,0,sizeof(freq));
-        rep(i,len)
+        memset(c,0,sizeof(c));
+        memset(dp,0,sizeof(dp));
+        int s,e,temp;
+        cin>>n;
+        while(n--)
         {
-            freq[s[i]]++;
+            cin>>s>>e>>temp;
+            if(c[s][e]<temp){c[s][e]=temp;}
         }
-        bool temp=true;
-        //cout<<len<<endl;
-        rep(i,len)
+
+        dp[0]=0; //base case;
+
+        fi(i,1,48)
         {
-            freq[s[s.size()-1-i]]--;
-            if(freq[s[s.size()-1-i]]<0)
+            dp[i]=0;
+            fi(j,0,i)
             {
-                temp=false;
+                dp[i]=max(dp[j]+c[j][i],dp[i]);
             }
         }
-        if(temp){cout<<"YES"<<endl;}
-        else{cout<<"NO"<<endl;}
+        cout<<dp[48]<<endl;
     }
     //fclose(stdin);
 	return 0;
 }
-
 

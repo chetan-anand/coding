@@ -22,34 +22,31 @@ typedef pair <int,int> pii;
 int main()
 {
     //freopen("i.txt","r",stdin);
-    int t,i,j,k;
-
+    int t,i,j,k,n;
+    string s,temp;
     cin>>t;
     while(t--)
     {
-        string s;
+        int len;
+        cin>>len;
         cin>>s;
-        int len=s.size();
-        //cout<<len<<endl;
-        len=len/2;
-        int freq[200];
-        memset(freq,0,sizeof(freq));
+        temp=s;
         rep(i,len)
         {
-            freq[s[i]]++;
-        }
-        bool temp=true;
-        //cout<<len<<endl;
-        rep(i,len)
-        {
-            freq[s[s.size()-1-i]]--;
-            if(freq[s[s.size()-1-i]]<0)
+            if(i==0 && s[i]=='1'){temp[i+1]='1';}
+            else if(i==len-1 && s[i]=='1'){temp[i-1]='1';}
+            else
             {
-                temp=false;
+                if(s[i]=='1'){temp[i-1]='1';temp[i+1]='1';}
             }
         }
-        if(temp){cout<<"YES"<<endl;}
-        else{cout<<"NO"<<endl;}
+        int cnt=0;
+        //cout<<temp<<endl;
+        rep(i,len)
+        {
+            if(temp[i]=='0'){cnt++;}
+        }
+        cout<<cnt<<endl;
     }
     //fclose(stdin);
 	return 0;

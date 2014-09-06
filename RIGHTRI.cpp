@@ -23,34 +23,18 @@ int main()
 {
     //freopen("i.txt","r",stdin);
     int t,i,j,k;
-
+    int cnt=0;
     cin>>t;
     while(t--)
     {
-        string s;
-        cin>>s;
-        int len=s.size();
-        //cout<<len<<endl;
-        len=len/2;
-        int freq[200];
-        memset(freq,0,sizeof(freq));
-        rep(i,len)
-        {
-            freq[s[i]]++;
-        }
-        bool temp=true;
-        //cout<<len<<endl;
-        rep(i,len)
-        {
-            freq[s[s.size()-1-i]]--;
-            if(freq[s[s.size()-1-i]]<0)
-            {
-                temp=false;
-            }
-        }
-        if(temp){cout<<"YES"<<endl;}
-        else{cout<<"NO"<<endl;}
+        int x1,x2,x3,y1,y2,y3;
+        cin>>x1>>y1>>x2>>y2>>x3>>y3;
+        int dp1=(x1-x2)*(x1-x3)+(y1-y2)*(y1-y3);
+        int dp2=(x3-x2)*(x3-x1)+(y3-y1)*(y3-y2);
+        int dp3=(x2-x1)*(x2-x3)+(y2-y1)*(y2-y3);
+        if(dp1==0||dp2==0||dp3==0){cnt++;}
     }
+    cout<<cnt<<endl;
     //fclose(stdin);
 	return 0;
 }
