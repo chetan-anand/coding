@@ -1,6 +1,68 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+/*///////////////////////// fast i/o ////////////
+inline void fastRead_int(int &x) {
+    register int c = getchar_unlocked();
+    x = 0;
+    int neg = 0;
+
+    for(; ((c<48 || c>57) && c != '-'); c = getchar_unlocked());
+
+    if(c=='-') {
+    	neg = 1;
+    	c = getchar_unlocked();
+    }
+
+    for(; c>47 && c<58 ; c = getchar_unlocked()) {
+    	x = (x<<1) + (x<<3) + c - 48;
+    }
+
+    if(neg)
+    	x = -x;
+}
+
+inline void fastRead_long(long long int &x) {
+    register long long int c = getchar_unlocked();
+    x = 0;
+    long long int neg = 0;
+
+    for(; ((c<48 || c>57) && c != '-'); c = getchar_unlocked());
+
+    if(c=='-') {
+    	neg = 1;
+    	c = getchar_unlocked();
+    }
+
+    for(; c>47 && c<58 ; c = getchar_unlocked()) {
+    	x = (x<<1) + (x<<3) + c - 48;
+    }
+
+    if(neg)
+    	x = -x;
+}
+
+
+inline void fastRead_string(char *str)
+{
+    register char c = 0;
+    register int i = 0;
+
+    while (c < 33)
+        c = getchar_unlocked();
+
+    while (c != '\n') {
+        str[i] = c;
+        c = getchar_unlocked();
+        i = i + 1;
+    }
+
+    str[i] = '\0';
+}
+
+//////////////////////////////////////////////*/
+
+
 typedef long long ll;
 typedef unsigned long long llu;
 typedef vector <int> vi;
@@ -22,7 +84,8 @@ typedef pair <int,int> pii;
 int main()
 {
     //freopen("i.txt","r",stdin);
-
+     clock_t start = clock();
+      while (clock() - start < (1.0 - 0.02) * CLOCKS_PER_SEC);
     //fclose(stdin);
 	return 0;
 }
