@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 1 3
 Leibniz Germany
 Leibniz
 Leibniz
 Leibniz
+=======
+2
+4 3 2 1
+1 1 1 1
+>>>>>>> origin/master

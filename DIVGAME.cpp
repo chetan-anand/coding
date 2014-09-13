@@ -67,67 +67,96 @@ typedef long long ll;
 typedef unsigned long long llu;
 typedef vector <int> vi;
 typedef pair <int,int> pii;
-vector<int> mat;
+
 #define pb push_back
 #define mp make_pair
 #define gi(n) scanf("%d",&n)
 #define gl(n) scanf("%lld",&n)
+#define gs(n) scanf("%s",n);
 #define pi(n) printf("%d\n",n)
 #define pl(n) printf("%lld\n",n)
-#define V(mat) vector<int> mat
-#define all(mat) mat.begin(),mat.end()
-#define MOD 1000000009
+#define ps(n) printf("%s\n",n);
 #define rep(i,n) for(int i=0;i<n;i++)
 #define fi(i,a,n) for(int i=a;i<=n;i++)
 #define fd(i,n,a) for(int i=n;i>=a;i--)
 #define input(f) freopen("f.txt","r",stdin)
-#define type pair<int, pair<int, int> >
+
 //////////////// bondapa /////////////
-//#define all(a) a.begin(),a.end()
+#define all(a) a.begin(),a.end()
 #define imax numeric_limits<int>::max()
 #define imin numeric_limits<int>::min()
 #define lmax numeric_limits<llu>::max()
 #define lmin numeric_limits<llu>::min()
 ///////////////////////////////////////
-type GCD(int a, int b);
-int main()
+
+long long modulo(long long base,long long exp,long long p)
 {
-    long long a,y,z,h,m;
-    int n,k,mid,i,j;
-    fastRead_int(k);
-    n=1<<k;mid=n>>1;
-    mat.resize(n+1);
-    mat[1] = mat[0] = 1;
-    for(i = 2; i <= n ; i++ )
-    {
-        y = mat[i-1];
-        a = i;
-        a = (a * y)%MOD;
-        //a = a % MOD;
-        mat[i] = a;
-    }
-    int temp=0;
-    for(i=1; i < mid; i++) pi(temp);
-    mat.resize(n);
-    h=mat[mid];
-    a = mat[mid];
-    pl((((2*a)%MOD)*a)%MOD);
-    for(i = mid+1; i <= n ; i++)
-    {   
-        a = n;
-        a = ( a * h )%MOD;
-        y = mat[i-1];
-        a = (a * y) % MOD;
-        z=(GCD(mat[i-mid],MOD).second.first + MOD) % MOD;
-        a = ( a*z )%MOD;
-        pl(a);
-    }
-    return 0;
+         long long res=0;
+         if(exp==0)
+                   return 1;
+         res=modulo(base,exp>>1,p);
+         res=(res*res)%p;
+         if(exp & 1)
+                res=(res*base)%p;
+         return res;
 }
 
-type GCD(int a, int b) {
-    if(a == 0) return make_pair(b, make_pair(0, 1));
-    type p;
-    p = GCD(b % a, a);
-    return make_pair(p.first, make_pair(p.second.second - p.second.first*(b/a), p.second.first));
+bool Miller(long long p,int iteration)
+{
+    long long temp;
+    if(p<2){
+        return false;
+    }
+    if(p!=2 && p%2==0){
+        return false;
+    }
+    long long s=p-1;
+    while(s%2==0){
+        s/=2;
+    }
+    for(int i=0;i<iteration;i++){
+        long long a=rand()%(p-1)+1;
+        temp=s;
+        long long mod=modulo(a,temp,p);
+        while(temp!=p-1 && mod!=1 && mod!=p-1){
+            mod=(mod*mod)%p;
+            temp *= 2;
+        }
+        if(mod!=p-1 && temp%2==0){
+            return false;
+        }
+    }
+    return true;
+}
+
+
+int main()
+{
+    int t,i,k,l;
+    //cin>>t;
+    fastRead_int(t);
+    ////////////// initialising the dp array //////
+    while(t--)
+    {
+        int n;
+        //cin>>n;
+        fastRead_int(n);
+        if(n==2||n==17)
+        {
+            cout<<"Mike"<<endl;
+        }
+        else if(n==16||n==34||n==289)
+        {
+            cout<<"Tom"<<endl;
+        }
+        else if(Miller((long long)n,3))
+        {
+            cout<<"Tom"<<endl; 
+        }
+        else
+        {
+            cout<<"Mike"<<endl; 
+        }
+    }
+	return 0;
 }

@@ -1,70 +1,67 @@
-/* @uthor - Shivam Saxena */
 #include<stdio.h>
-#include<algorithm>
 #include<vector>
-#include<stack>
-#include<queue>
-#include<math.h>
-#include<string.h>
-#include<stdlib.h>
-#include<set>
-#include<map>
-#include<iostream>
-#include <list>
 using namespace std;
-#define mod 1000000007
-long long power(long long b, long long e) {
-    long long p = 1;
-    while (e > 0) {
-        if(e&1) {
-            p = (p*b)%mod;
-        }
-        e = e>>1;
-        b = (b * b)%mod;
-    }
-    return p;
-}
-
+long exclude[50][50];
+long dp[50];
+vector<long>offer[20005];
 int main()
 {
-    int t;
-    long long n,m,i,ans,sqrtn,k;
-    double y,t1,t2,x;
-    scanf("%d",&t);
-    while(t--)
-    {
-
-        scanf("%lld %lld",&n,&mod);
-        if(n==1)
-        {
-            P1(n%m);
-            continue;
-        }
-        k=0;
-        ans=n%mod;
-        sqrtn=(long long)floor(sqrt(n));
-        for (i = 2; i <= sqrtn; i++)
-        {
-            x=1.0*i;
-            y=1.0*ans;
-            y=fmod(y+x*x*x*x*floor(1.0*n/x),mod);
-            ans=(long long)y;
-
-        }
-        for(i=1;i<=sqrtn && !k;i++)
-        {
-            t1=1.0*(n/(i+1));
-            t2=1.0*(n/i);
-            if(t1==sqrtn)
-                k=1;
-            t1=t1*(t1+1)*(2*t1+1)*(3*t1*t1+3*t1-1)/30;
-            t2=t2*(t2+1)*(2*t2+1)*(3*t2*t2+3*t2-1)/30;
-            y=1.0*ans;
-            y=fmod((y+(t2-t1)*i),mod);
-            ans=(long long)y;
-        }
-        printf("%lld\n",ans);
-    }
-    return 0;
+		long i,j,k[50],w,f,n,m,x,max,count;
+		
+		scanf("%ld%ld",&n,&m);
+		for(i=1;i<=m;i++)//order no.
+		{
+			scanf("%ld",&k[i]);
+			for(j=1;j<=k[i];j++)
+			{
+				scanf("%ld",&x);//offer[index of stamp][offer index]
+				//offer[20000][20]
+				offer[x].push_back(i);//push order no.
+			}
+		}
+		
+		for(i=1;i<=n;i++)//ticket no.
+		{
+			
+			
+				long l=offer[i].size();
+				for(j=0;j<l;j++){
+					for(w=j+1;w<l;w++)
+					{	
+						exclude[offer[i][j]][offer[i][w]]=1;
+						exclude[offer[i][w]][offer[i][j]]=1;
+						
+					}}
+			
+			
+		}
+		/*//printf("\n");
+		for(i=1;i<=m;i++)
+		{
+			for(j=1;j<=m;j++)printf("%ld ",exclude[i][j]);
+			printf("\n");
+		}printf("\n");*/
+		max=0;
+		for(i=1;i<=m;i++)
+		{
+			
+			
+			
+				count=1;
+				for(j=1;j<i;j++)
+				{
+							
+							if(exclude[i][j]==0)
+							{
+								count++;
+							}
+						
+					
+				}
+				
+				if(max<count)max=count;
+	
+			
+		}
+		printf("%ld\n",max);
 }
-
