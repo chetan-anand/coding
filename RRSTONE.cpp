@@ -1,51 +1,64 @@
-#include <stdio.h>
-#include <iostream>
-#include <string.h>
-#include <algorithm>
+#include<bits/stdc++.h>
 using namespace std;
+typedef long long ll;
+typedef unsigned long long llu;
+typedef vector <long long int> vi;
+typedef pair <long long int,long long int> pii;
+#define pb push_back
+#define mp make_pair
+#define gi(n) scanf("%d",&n)
+#define gl(n) scanf("%lld",&n)
+#define gs(n) scanf("%s",n);
+#define pi(n) prlong long intf("%d\n",n)
+#define pl(n) prlong long intf("%lld\n",n)
+#define ps(n) prlong long intf("%s\n",n);
+#define rep(i,n) for(long long int i=0;i<n;i++)
+#define fi(i,a,n) for(long long int i=a;i<=n;i++)
+#define fd(i,n,a) for(long long int i=n;i>=a;i--)
+#define input(f) freopen("f.txt","r",stdin)
+
+//////////////// bondapa /////////////
+#define all(a) a.begin(),a.end()
+#define imax numeric_limits<long long int>::max()
+#define imin numeric_limits<long long int>::min()
+#define lmax numeric_limits<llu>::max()
+#define lmin numeric_limits<llu>::min()
+///////////////////////////////////////
+
+void dis(long long int *a,long long int n)
+{
+	rep(i,n)
+	{
+		cout<<a[i]<<" ";
+	}
+	cout<<endl;
+}
 
 int main()
 {
-	int n,i,j,k;
+    //freopen("i.txt","r",stdin);
+	long long int i,j,k,n,m,a[110000],b[110000];
 	cin>>n>>k;
-	int a[100010],min,max;
-	int tmp[100010];
-	//memset(a,0,sizeof(a));
-	for(i=0;i<n;i++)
+	long long int maxv=INT_MIN;
+	rep(i,n)
 	{
 		cin>>a[i];
-		if(i==0){min=max=a[i];}
-		if(a[i]<min){min=a[i];}
-		if(a[i]>max){max=a[i];}
+		maxv=max(maxv,a[i]);
 	}
-
-	if(k==0)
+	if(k==0){dis(a,n);return 0;}
+	long long int maxv2=INT_MIN;
+	rep(i,n)
 	{
-		for(i=0;i<n;i++)
-		{
-			printf("%d ",a[i]);
-		}
-		return 0;
+		a[i]=maxv-a[i];
+		maxv2=max(maxv2,a[i]);
 	}
-
-	for(i=0;i<n;i++){a[i]=max-a[i];}
-
-
-	if(k%2!=0)
+	rep(i,n)
 	{
-		for(i=0;i<n;i++)
-		{
-			printf("%d ",a[i]);
-		}
+		b[i]=maxv2-a[i];
 	}
-	else
-	{
-		for (i = 0; i < n; ++i)
-		{
-			/* code */
-			printf("%d ",max-min-a[i]);
-		}
-	}
-	printf("\n");
+	if(k==1){dis(a,n);}
+	else if((k-1)%2==0){dis(a,n);}
+	else{dis(b,n);}
+    //fclose(stdin);
 	return 0;
 }
