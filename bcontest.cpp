@@ -22,13 +22,19 @@ typedef pair <int,int> pii;
 int main()
 {
     //freopen("i.txt","r",stdin);
-    int t,i,j,k,l;
-    cin>>t;
-    while(t--)
+    int n,a[11000];
+    cin>>n;
+    int ans=0;
+    while(n--)
     {
-
+        int temp;
+        cin>>temp;
+        temp=__builtin_popcount (temp);
+        //cout<<temp<<endl;
+        ans=ans^temp;
     }
+    if(ans==0){cout<<"The other player :("<<endl;}
+    else{cout<<"Shaka :)"<<endl;}
     //fclose(stdin);
 	return 0;
 }
-
