@@ -1,9 +1,5 @@
 #include<bits/stdc++.h>
 using namespace std;
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
 typedef long long ll;
 typedef unsigned long long llu;
 typedef vector <int> vi;
