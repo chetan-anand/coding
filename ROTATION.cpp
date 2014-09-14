@@ -40,13 +40,15 @@ int main()
             else
                 cout<<a[idx]<<endl;
         }
+
+        // Basically in both case i am advancing
         else if(ch=='C')
         {
-            shift=(shift+n-d)%n;
+            shift=(shift+n-d)%n; // instead of retracting shift i advance shift by (n-d)
         }
         else
         {
-            shift=(shift+d)%n;
+            shift=(shift+d)%n;  // i am advancing the shift by d
         }
     }
 
