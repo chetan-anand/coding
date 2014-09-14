@@ -16,10 +16,43 @@ typedef pair <int,int> pii;
 #define fi(i,a,n) for(int i=a;i<=n;i++)
 #define fd(i,n,a) for(int i=n;i>=a;i--)
 #define input(f) freopen("f.txt","r",stdin)
-
+#define fill(a) memset(a,0,sizeof(a))
 int main()
 {
-    //freopen("i.txt","r",stdin);
+    freopen("i.txt","r",stdin);
+    int t,i,j,k;
+    int a[11000],b[11000];
+    int h[1100];
+    cin>>t;
+    while(t--)
+    {
+
+        int n,m;
+        fill(h);
+        rep(i,m)
+        {
+            cin>>a[i]>>b[i];
+            cout<<"debug"<<endl;
+        }
+        vector<int> ans;
+        fd(i,m-1,0)
+        {
+            if(h[a[i]]>0||h[b[i]]>0)
+            {
+                continue;
+            }
+            h[a[i]]++;
+            h[b[i]]++;
+            //cout<<i<<endl;
+            ans.pb(i);
+        }
+//        vector<int>::iterator it;
+//        for(it=ans.end();it!=ans.begin();it--)
+//        {
+//            cout<<*it<<" ";
+//        }
+        //cout<<endl;
+    }
 
     //fclose(stdin);
 	return 0;
