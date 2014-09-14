@@ -20,7 +20,7 @@ typedef pair <int,int> pii;
 
 int main()
 {
-    freopen("i.txt","r",stdin);
+    //freopen("i.txt","r",stdin);
     int t,i,j,k;
     int a[11000],b[11000];
     int h[1100];
