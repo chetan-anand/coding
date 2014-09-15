@@ -1,55 +1,32 @@
+#include <iostream>
+#include <string>
 #include<bits/stdc++.h>
 using namespace std;
-#define maxn 200000 + 5
 
-int f[maxn], t[maxn], p[maxn], ii, kdepth[maxn], Tn, i, n, x, y, l, r, mid, eaten;
-bool over;
-
-void addedge (int x, int y) {
-	t[++ii] = y;
-	p[ii] = f[x];
-	f[x] = ii;
-}
-
-void dfs (int k, int pr, int depth) {
-	++kdepth[depth];
-	int q = f[k];
-	while(q > 0) {
-		if (t[q] != pr) dfs(t[q], k, depth + 1);
-		q = p[q];
+int main(){
+    //freopen("i.txt","r",stdin);
+	int n; cin>>n;
+	int m; cin>>m;
+	vector<int> vec;
+	vec.resize(n+1);
+	for(int i=1;i<=n;i++){
+		cin>>vec[i];
 	}
-}
-
-int main (int argc, char * const argv[]) {
-//	freopen("input.txt", "r", stdin);
-    clock_t start = clock();
-	scanf("%d", &Tn);
-	while (Tn--) {
-		ii = 0;
-		for(i = 1; i <= n; i++) f[i] = 0;
-		scanf("%d", &n);
-		for(i = 1; i < n; i++) {
-			scanf("%d %d", &x, &y);
-			addedge(x, y);
-			addedge(y, x);
+	int c=0,temp;
+	char ch;
+	while(m--){
+		cin>>ch>>temp;
+		if(ch=='R'){
+			int x=temp-c;
+			if(x<=0)cout<<vec[x+n]<<endl;
+			else cout<<vec[x]<<endl;
 		}
-		for(i = 1; i <= n; i++) kdepth[i] = 0;
-		dfs(1, -1, 1);
-		l = 1, r = n;
-		while (l < r) {
-			mid = (l + r + 1) / 2;
-			eaten = 0;
-			for(i = 1; i <= (mid + 1) / 2; i++) eaten += kdepth[i];
-			if (n - eaten >= mid - (mid + 1) / 2) over = false; else over = true;
-			if (over) r = mid - 1; else l = mid;
+		else if(ch=='A'){
+			c=(c+temp)%n;
 		}
-		int remain = n;
-		for(i = 1; i <= (l + 1) / 2; i++) remain -= kdepth[i];
-		remain -= l - (l + 1) / 2;
-		if (remain) ++l;
-		printf("%d\n", l);
+		else{
+			c=(c+(n-temp))%n;
+		}
 	}
-	 while (clock() - start < (1.0 - 0.02) * CLOCKS_PER_SEC);
-    return 0;
+	return 0;
 }
-

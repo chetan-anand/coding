@@ -22,7 +22,12 @@ typedef pair <int,int> pii;
 int main()
 {
     //freopen("i.txt","r",stdin);
+    int t,i,j,k,l;
+    cin>>t;
+    while(t--)
+    {
 
+    }
     //fclose(stdin);
 	return 0;
 }
