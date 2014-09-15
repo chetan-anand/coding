@@ -17,23 +17,63 @@ typedef pair <int,int> pii;
 #define fd(i,n,a) for(int i=n;i>=a;i--)
 #define input(f) freopen("f.txt","r",stdin)
 
+int zor(int *a,int n,int ans)
+{
+	rep(i,n)
+	{
+		ans=ans^a[i];
+	}
+	return ans;
+}
+
+int nd(int *a,int n,int ans)
+{
+
+	rep(i,n)
+	{
+		ans=ans&a[i];
+	}
+	return ans;
+}
+
+int aur(int *a,int n,int ans)
+{
+
+	rep(i,n)
+	{
+		ans=ans|a[i];
+	}
+	return ans;
+}
 int main()
 {
     //freopen("i.txt","r",stdin);
-	int t,i,j,k;
+	int t,i,j,k,a[1100];
 	cin>>t;
 	while(t--)
 	{
-		char s[2000];
-		cin>>s;
-		int len=strlen(s);
-		//cout<<s<<endl;
-		//nextbig(s);
-		if(next_permutation(s,s+len))
+		int n,k,ans;
+		cin>>n>>k>>ans;
+		rep(i,n)
 		{
-			cout<<s<<endl;
+			cin>>a[i];
 		}
-		else{cout<<"no answer"<<endl;}
+		string str;
+		cin>>str;
+		if(k==0){cout<<ans<<endl;}
+		else if(str=="XOR")
+		{
+			if(k%2==0){cout<<ans<<endl;}
+			else{cout<<zor(a,n,ans)<<endl;}
+		}
+		else if(str=="AND")
+		{
+			cout<<nd(a,n,ans)<<endl;
+		}
+		else
+		{
+			cout<<aur(a,n,ans)<<endl;
+		}
 	}
     //fclose(stdin);
 	return 0;
