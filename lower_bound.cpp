@@ -12,8 +12,8 @@ int main () {
 
   std::vector<int>::iterator low,up;
   int *left,*right;
-  low=std::lower_bound (v.begin(), v.end(), 21); //          ^
-  up= std::upper_bound (v.begin(), v.end(), 21); //                   ^
+  low=std::lower_bound (v.begin(), v.end(), 25); //          ^
+  up= std::upper_bound (v.begin(), v.end(), 25); //                   ^
     left=std::lower_bound(myints,myints+8,20);
     right=std::upper_bound(myints,myints+8,20);
   std::cout << "lower_bound at position " << (low- v.begin()) << '\n';
