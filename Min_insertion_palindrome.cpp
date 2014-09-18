@@ -24,6 +24,14 @@ int findMinInsertionsDP(char str[], int n)
             table[l][h] = (str[l] == str[h])? table[l+1][h-1] :
                           (min(table[l][h-1], table[l+1][h]) + 1);
 
+    for(l=0;l<=n-1;l++)
+    {
+        for(h=l;h<=n-1;h++)
+        {
+            table[l][h]=(str[l]==str[h])?table[l+1][h-1]?min(table[l+1][h],table[l][h-1]);
+        }
+    }
+
     // Return minimum number of insertions for str[0..n-1]
     return table[0][n-1];
 }
