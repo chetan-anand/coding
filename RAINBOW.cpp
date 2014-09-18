@@ -86,8 +86,8 @@ int main()
 
 			cnt=((cnt%mod)+c[p][5])%mod;
 		}
-        cout<<cnt<<endl;
-		//cout<<c[(n-1)/2][6]<<endl;
+        //cout<<cnt<<endl;
+		cout<<c[(n-1)/2][6]<<endl;
 	}
     //fclose(stdin);
 	return 0;
