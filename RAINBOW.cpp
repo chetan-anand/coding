@@ -54,7 +54,7 @@ void pre(int n)
 			if(i==j || j==0)
 				c[i][j]=1;  // Base cases we have to stop here and do not go to normal recursion for base inputs.
 				// Keep above point in mind
-			else 
+			else
 				c[i][j]=((c[i-1][j])%mod + (c[i-1][j-1])%mod)%mod;
 		}
 	}
@@ -63,8 +63,8 @@ int main()
 {
     //freopen("i.txt","r",stdin);
 	int n,i,j,k;
-	//cin>>n;
-	fastRead_int(n);
+	cin>>n;
+	//fastRead_int(n);
 	if(n<13)
 		cout<<"0"<<endl;
 	else if(n==13)
@@ -86,10 +86,9 @@ int main()
 
 			cnt=((cnt%mod)+c[p][5])%mod;
 		}
-
-		cout<<c[(n-1)/2][6]<<endl;
+        cout<<cnt<<endl;
+		//cout<<c[(n-1)/2][6]<<endl;
 	}
     //fclose(stdin);
 	return 0;
 }
-	
