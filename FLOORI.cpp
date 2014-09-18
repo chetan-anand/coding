@@ -17,18 +17,22 @@ typedef pair <int,int> pii;
 #define fd(i,n,a) for(int i=n;i>=a;i--)
 #define input(f) freopen("f.txt","r",stdin)
 
+void precompute(int *a)
+{
 
+}
 int main()
 {
     //freopen("i.txt","r",stdin);
 	int t,i,j,k,n,m;
 	cin>>t;
+	int 
 	while(t--)
 	{
 		cin>>n>>m;
 		fi(i,1,n)
 		{
-			if(i==1){}
+
 		}
 	}
     //fclose(stdin);
