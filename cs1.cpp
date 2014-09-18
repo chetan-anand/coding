@@ -20,20 +20,12 @@ typedef pair <int,int> pii;
 int main()
 {
     //freopen("i.txt","r",stdin);
-	int t,i,j,k;
+	long long int t,i,j,k,x,y,x1,x2,y1,y2;
 	cin>>t;
 	while(t--)
 	{
-		char s[2000];
-		cin>>s;
-		int len=strlen(s);
-		//cout<<s<<endl;
-		//nextbig(s);
-		if(next_permutation(s,s+len))
-		{
-			cout<<s<<endl;
-		}
-		else{cout<<"no answer"<<endl;}
+		cin>>x>>y>>x1>>y1>>x2>>y2;
+		cout<<min(min(abs(x1-x),abs(x2-x)),min(abs(y1-y),abs(y2-y)))<<endl;
 	}
     //fclose(stdin);
 	return 0;

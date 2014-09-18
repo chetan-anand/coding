@@ -17,23 +17,32 @@ typedef pair <int,int> pii;
 #define fd(i,n,a) for(int i=n;i>=a;i--)
 #define input(f) freopen("f.txt","r",stdin)
 
+long long int m[200000];
+long long int h[200000];
 int main()
 {
     //freopen("i.txt","r",stdin);
-	int t,i,j,k;
+	int t,i,j,k,n;
 	cin>>t;
 	while(t--)
 	{
-		char s[2000];
-		cin>>s;
-		int len=strlen(s);
-		//cout<<s<<endl;
-		//nextbig(s);
-		if(next_permutation(s,s+len))
+		cin>>n;
+		rep(i,n)
 		{
-			cout<<s<<endl;
+			cin>>m[i];
 		}
-		else{cout<<"no answer"<<endl;}
+		rep(i,n)
+		{
+			cin>>h[i];
+		}
+		sort(m,m+n);
+		sort(h,h+n);
+		long long int maxv=INT_MIN;
+		rep(i,n)
+		{
+			maxv=max(maxv,abs(m[i]-h[i]));
+		}
+		cout<<maxv<<endl;
 	}
     //fclose(stdin);
 	return 0;

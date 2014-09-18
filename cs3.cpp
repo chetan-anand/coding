@@ -20,21 +20,26 @@ typedef pair <int,int> pii;
 int main()
 {
     //freopen("i.txt","r",stdin);
-	int t,i,j,k;
-	cin>>t;
-	while(t--)
+    long long int t,i,j,k;
+    string b,w;
+    cin>>t;
+    while(t--)
 	{
-		char s[2000];
-		cin>>s;
-		int len=strlen(s);
-		//cout<<s<<endl;
-		//nextbig(s);
-		if(next_permutation(s,s+len))
-		{
-			cout<<s<<endl;
-		}
-		else{cout<<"no answer"<<endl;}
-	}
+    	cin>>b;
+    	cin>>w;
+    	long long int freq[200];
+    	memset(freq,0,sizeof(freq));
+    	rep(i,b.size())
+    	{
+    		freq[b[i]]++;
+    	}
+    	long long int cnt=0;
+    	rep(i,w.size())
+    	{
+    		if(freq[w[i]]>0){cnt++;freq[w[i]]=0;}
+    	}
+    	cout<<cnt<<endl;
+    }
     //fclose(stdin);
 	return 0;
 }

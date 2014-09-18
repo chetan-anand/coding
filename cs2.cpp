@@ -20,20 +20,26 @@ typedef pair <int,int> pii;
 int main()
 {
     //freopen("i.txt","r",stdin);
-	int t,i,j,k;
+    long long int t,i,j,k,n,a[200];
 	cin>>t;
 	while(t--)
 	{
-		char s[2000];
-		cin>>s;
-		int len=strlen(s);
-		//cout<<s<<endl;
-		//nextbig(s);
-		if(next_permutation(s,s+len))
+		cin>>n;
+		double avg;
+		long long int cnt=0;
+		rep(i,n)
 		{
-			cout<<s<<endl;
+			cin>>a[i];
+			cnt+=a[i];
 		}
-		else{cout<<"no answer"<<endl;}
+		avg=(double)cnt/(double)n;
+		//cout<<avg<<endl;
+		cnt=0;
+		rep(i,n)
+		{
+			if(((double)a[i])>avg){cnt++;}
+		}
+		cout<<cnt<<endl;
 	}
     //fclose(stdin);
 	return 0;
