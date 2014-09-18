@@ -1,100 +1,87 @@
-/*
-Suffix array O(n lg^2 n)
-LCP table O(n)
-*/
-#include <cstdio>
-#include <algorithm>
-#include <cstring>
-
+#include<bits/stdc++.h>
 using namespace std;
+typedef long long ll;
+typedef unsigned long long llu;
+typedef vector <int> vi;
+typedef pair <int,int> pii;
+#define pb push_back
+#define mp make_pair
+#define gi(n) scanf("%d",&n)
+#define gl(n) scanf("%lld",&n)
+#define gs(n) scanf("%s",n);
+#define pi(n) printf("%d\n",n)
+#define pl(n) printf("%lld\n",n)
+#define ps(n) printf("%s\n",n);
+#define rep(i,n) for(int i=0;i<n;i++)
+#define fi(i,a,n) for(int i=a;i<=n;i++)
+#define fd(i,n,a) for(int i=n;i>=a;i--)
+#define input(f) freopen("f.txt","r",stdin)
 
-#define REP(i, n) for (int i = 0; i < (int)(n); ++i)
+// contain the sorted suffixes of the text
+pair <string,int> suffix_array[10000];
 
-namespace SuffixArray
+//compare function for suitable for our data container
+bool comp(pair<string,int> s1,pair<string,int> s2)
 {
-	const int MAXN = 1 << 21;
-	char * S;
-	int N, gap;
-	int sa[MAXN], pos[MAXN], tmp[MAXN], lcp[MAXN];
-
-	bool sufCmp(int i, int j)
-	{
-		if (pos[i] != pos[j])
-			return pos[i] < pos[j];
-		i += gap;
-		j += gap;
-		return (i < N && j < N) ? pos[i] < pos[j] : i > j;
-	}
-
-	void buildSA()
-	{
-		N = strlen(S);
-		REP(i, N) sa[i] = i, pos[i] = S[i];
-		for (gap = 1;; gap *= 2)
-		{
-			sort(sa, sa + N, sufCmp);
-			REP(i, N - 1) tmp[i + 1] = tmp[i] + sufCmp(sa[i], sa[i + 1]);
-			REP(i, N) pos[sa[i]] = tmp[i];
-			if (tmp[N - 1] == N - 1) break;
-		}
-	}
-
-	void buildLCP()
-	{
-		for (int i = 0, k = 0; i < N; ++i) if (pos[i] != N - 1)
-		{
-			for (int j = sa[pos[i] + 1]; S[i + k] == S[j + k];)
-			++k;
-			lcp[pos[i]] = k;
-			if (k)--k;
-		}
-	}
-} // end namespace SuffixArray
-
-//Another using hashing
+    return s1.first<s2.first?true:false;
+}
 
 
-namespace HashSuffixArray
+// here we are building suffix array
+// Time complexity = O(n*log(n))
+void build_suffix_array(string text)
 {
-	const int
-		MAXN = 1 << 21;
+    int i,j,k,temp;
+    string str;
+    int len=text.size();
+    // suffixes and their position stored in container
+    fd(i,text.size()-1,0)
+    {
+        str=text[i]+str;
+        cout<<"suffixes="<<str<<endl;
+        suffix_array[i]=mp(str,i);
+    }
+    // now sort the suffix_array
+    sort(suffix_array,suffix_array+len,comp);
+    rep(i,len)
+    {
+        cout<<suffix_array[i].first<<" "<<suffix_array[i].second<<endl;
+    }
+}
 
-	typedef unsigned long long hash;
+/// search the pattern using binary search
+// search query= O(log(n))
+bool search(string text,string pattern)
+{
+    if(pattern.size()>text.size()){return false;}
+    int l=0,r=text.size()-1;
 
-	const hash BASE = 137;
+    while(l<=r)
+    {
+        int mid=(l+r)/2;
+        if(pattern.compare(0,pattern.size(),suffix_array[mid].first,0,pattern.size())==0)
+        {
+            cout<<"Is here= "<<suffix_array[mid].second<<endl;
+            break;
+        }
 
-	int N;
-	char * S;
-	int sa[MAXN];
-	hash h[MAXN], hPow[MAXN];
-
-	#define getHash(lo, size) (h[lo] - h[(lo) + (size)] * hPow[size])
-
-	inline bool sufCmp(int i, int j)
-	{
-		int lo = 1, hi = min(N - i, N - j);
-		while (lo <= hi)
-		{
-			int mid = (lo + hi) >> 1;
-			if (getHash(i, mid) == getHash(j, mid))
-				lo = mid + 1;
-			else
-				hi = mid - 1;
-		}
-		return S[i + hi] < S[j + hi];
-	}
-
-	void buildSA()
-	{
-		N = strlen(S);
-		hPow[0] = 1;
-		for (int i = 1; i <= N; ++i)
-			hPow[i] = hPow[i - 1] * BASE;
-		h[N] = 0;
-		for (int i = N - 1; i >= 0; --i)
-			h[i] = h[i + 1] * BASE + S[i], sa[i] = i;
-
-		stable_sort(sa, sa + N, sufCmp);
-	}
-
-} // end namespace HashSuffixArray
+        else if(pattern<suffix_array[mid].first)
+            r=mid-1;
+        else
+            l=mid+1;
+    }
+    return false;
+}
+int main()
+{
+    //freopen("i.txt","r",stdin);
+    string text,pattern;
+    int i,j,k,temp;
+    text="banana";
+    pattern="banana";
+    cout<<text<<endl;
+    build_suffix_array(text);
+    search(text,pattern);
+    //fclose(stdin);
+	return 0;
+}
