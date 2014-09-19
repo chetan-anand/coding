@@ -59,10 +59,10 @@ int main()
 
 		sort(p.begin(),p.end(),comp);
 		//debug
-		rep(i,p.size())
+		/*rep(i,p.size())
 		{
 			cout<<p[i].first<<" "<<p[i].second<<endl;
-		}
+		}*/
 		int cnt=0;
 		fi(i,0,p.size()-1)
 		{
