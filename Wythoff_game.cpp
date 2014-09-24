@@ -1,3 +1,5 @@
+// game theory problem
+
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long ll;
@@ -20,7 +22,22 @@ typedef pair <int,int> pii;
 int main()
 {
     //freopen("i.txt","r",stdin);
+	int n,m,i,j,k;
+	cin>>n>>m;
+	// base case for losing position is when
+	// configuration is 0,0 == loosing position
+	int dp[1000][1000];
+	memset(dp,0,sizeof(dp));
 
+	dp[0][0]=-1; // looosing position base case
+	for(i=1;i<=1000;i++)
+	{
+		dp[i][0]=1;
+		dp[0][i]=1;
+		dp[i][i]=1;
+	}
+
+	
     //fclose(stdin);
 	return 0;
 }

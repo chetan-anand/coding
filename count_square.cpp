@@ -57,7 +57,7 @@ int main()
 			p.push_back(make_pair(x,y));
 		}
 
-		sort(p.begin(),p.end(),comp);
+		//sort(p.begin(),p.end(),comp);
 		//debug
 		/*rep(i,p.size())
 		{
@@ -66,8 +66,9 @@ int main()
 		int cnt=0;
 		fi(i,0,p.size()-1)
 		{
-			fi(j,i+1,p.size()-1)
+			fi(j,0,p.size()-1)
 			{
+				if(i==j){continue;}
 				if(p[j].first>p[i].first && p[j].second>p[i].second)
 				{
 					/*int dx=p[j].first-p[i].first;
