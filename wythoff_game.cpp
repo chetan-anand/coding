@@ -67,7 +67,10 @@ int main()
 					for (int k=0;k<=1000; ++k)
 					{
 						/* code */
-						if(min(i-1-k||j+k))
+						if(min(i+1+k||j+1+k)<=1000)
+						{
+							dp[i+1+k][j+1+k]=1;
+						}
 					}
 				}
 			}
