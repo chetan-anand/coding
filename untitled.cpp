@@ -1,40 +1,38 @@
-#include<bits/stdc++.h>
+#include <cstdio>
+#include <vector>
+#include <algorithm>
+ #include<bits/stdc++.h>
 using namespace std;
-typedef long long ll;
-typedef unsigned long long llu;
-typedef vector <int> vi;
-typedef pair <int,int> pii;
-#define pb push_back
-#define mp make_pair
-#define gi(n) scanf("%d",&n)
-#define gl(n) scanf("%lld",&n)
-#define gs(n) scanf("%s",n);
-#define pi(n) printf("%d\n",n)
-#define pl(n) printf("%lld\n",n)
-#define ps(n) printf("%s\n",n);
-#define rep(i,n) for(int i=0;i<n;i++)
-#define fi(i,a,n) for(int i=a;i<=n;i++)
-#define fd(i,n,a) for(int i=n;i>=a;i--)
-#define input(f) freopen("f.txt","r",stdin)
-
-int main()
-{
-    //freopen("i.txt","r",stdin);
-	int t,i,j,k;
-	cin>>t;
-	while(t--)
-	{
-		char s[2000];
-		cin>>s;
-		int len=strlen(s);
-		//cout<<s<<endl;
-		//nextbig(s);
-		if(next_permutation(s,s+len))
-		{
-			cout<<s<<endl;
+ 
+int main() {
+	int t;
+	scanf("%d", &t);
+	for (int i = 0; i < t; i++) {
+		int n;
+		scanf("%d", &n);
+		vector<vector<int> > p(101, vector<int>(101, 0));
+		vector<pair<int, int> > sp;
+		for (int j = 0; j < n; j++) {
+			int x, y;
+			scanf("%d %d", &x, &y);
+			p[y+50][x+50]++;
+			sp.push_back(make_pair(y+50, x+50));
 		}
-		else{cout<<"no answer"<<endl;}
+		//sort(sp.begin(), sp.end());
+		for(i=0;i<sp.size();i++)
+		{
+			cout<<sp[i].first<<" "<<sp[i].second<<endl;
+		}
+		/*int ct = 0;
+		for (int j = 0; j < sp.size(); j++) for (int k = j+1; k < sp.size(); k++)
+			if (sp[k].second > sp[j].second) {
+				int y = sp[j].first, x = sp[j].second, dy = sp[k].first-y,
+						dx = sp[k].second-x;
+				if (x-dy >= 0 && y+dx+dy < 101 && p[y+dx][x-dy] &&
+						p[y+dx+dy][x-dy+dx])
+					ct++;
+			}
+		printf("%d\n", ct);*/
 	}
-    //fclose(stdin);
 	return 0;
-}
+} 
