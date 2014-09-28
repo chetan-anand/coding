@@ -1,67 +1,46 @@
-#include<stdio.h>
-#include<vector>
+#include<bits/stdc++.h>
 using namespace std;
-long exclude[50][50];
-long dp[50];
-vector<long>offer[20005];
+typedef long long ll;
+typedef unsigned long long llu;
+typedef vector <int> vi;
+typedef pair <int,int> pii;
+#define pb push_back
+#define mp make_pair
+#define gi(n) scanf("%d",&n)
+#define gl(n) scanf("%lld",&n)
+#define gs(n) scanf("%s",n);
+#define pi(n) printf("%d\n",n)
+#define pl(n) printf("%lld\n",n)
+#define ps(n) printf("%s\n",n);
+#define rep(i,n) for(int i=0;i<n;i++)
+#define fi(i,a,n) for(int i=a;i<=n;i++)
+#define fd(i,n,a) for(int i=n;i>=a;i--)
+#define input(f) freopen("f.txt","r",stdin)
+
 int main()
 {
-		long i,j,k[50],w,f,n,m,x,max,count;
-		
-		scanf("%ld%ld",&n,&m);
-		for(i=1;i<=m;i++)//order no.
-		{
-			scanf("%ld",&k[i]);
-			for(j=1;j<=k[i];j++)
-			{
-				scanf("%ld",&x);//offer[index of stamp][offer index]
-				//offer[20000][20]
-				offer[x].push_back(i);//push order no.
-			}
-		}
-		
-		for(i=1;i<=n;i++)//ticket no.
-		{
-			
-			
-				long l=offer[i].size();
-				for(j=0;j<l;j++){
-					for(w=j+1;w<l;w++)
-					{	
-						exclude[offer[i][j]][offer[i][w]]=1;
-						exclude[offer[i][w]][offer[i][j]]=1;
-						
-					}}
-			
-			
-		}
-		/*//printf("\n");
-		for(i=1;i<=m;i++)
-		{
-			for(j=1;j<=m;j++)printf("%ld ",exclude[i][j]);
-			printf("\n");
-		}printf("\n");*/
-		max=0;
-		for(i=1;i<=m;i++)
-		{
-			
-			
-			
-				count=1;
-				for(j=1;j<i;j++)
-				{
-							
-							if(exclude[i][j]==0)
-							{
-								count++;
-							}
-						
-					
-				}
-				
-				if(max<count)max=count;
-	
-			
-		}
-		printf("%ld\n",max);
+    //freopen("i.txt","r",stdin);
+    string str;
+    cin>>str;
+    int x=0,y=0;
+    rep(i,str.size())
+    {
+        if(str[i]=='a')
+        {
+
+            x++;y=max(x,y);
+        }
+        else{
+            x=0;
+        }
+    }
+    rep(i,y+1)
+    {
+
+        cout<<"a";
+    }
+    cout<<endl;
+    //fclose(stdin);
+	return 0;
 }
+
