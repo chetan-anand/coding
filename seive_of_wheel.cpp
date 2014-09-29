@@ -9,6 +9,7 @@ void initsow()
 {
     int i,j,k;
     memset(prime,false,sizeof(prime));
+    prime[1]=true;
     for(i=2;i<=sqrt(max);i++)
     {
         if(!(prime[i]))
