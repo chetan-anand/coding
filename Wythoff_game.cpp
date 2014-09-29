@@ -41,14 +41,12 @@ int main()
 		dp[i][i]=1;
 	}
 
-	for(i=0;i<=1000;i++)
+	for(i=1;i<=1000;i++)
 	{
-		for(j=0;j<=1000;j++)
+		for(j=1;j<=1000;j++)
 		{
-			if(dp[i][j]!=0)
+			if(dp[i][j]==0)
 			{
-				int win=0;
-				int loss=0;
 				if(col[i]==1||row[i]==1)
 				{
 					dp[i][j]=1;
@@ -58,15 +56,30 @@ int main()
 					dp[i][j]=-1;
 					col[i]=1;
 					row[i]=1;
+					for(int k=i+1,k<=1000;k++)
+					{
+						dp[k][j]=1;
+					}
+					for(int k=j+1,k<=1000;k++)
+					{
+						dp[i][k]=1;
+					}
+					for (int k=0;k<=1000; ++k)
+					{
+						/* code */
+						if(min(i+1+k||j+1+k)<=1000)
+						{
+							dp[i+1+k][j+1+k]=1;
+						}
+					}
 				}
-
 			}
 		}
 	}
 
-	rep(i,0,n)
+	rep(i,n)
 	{
-		rep(j,0,m)
+		rep(j,m)
 		{
 			cout<<dp[i][j]<<" ";
 		}

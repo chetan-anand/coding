@@ -1,88 +1,66 @@
-/*program to print all of its root-to-leaf paths for a tree*/
-#include <stdio.h>
-#include <stdlib.h>
 
-/* A binary tree node has data, pointer to left child
-   and a pointer to right child */
-struct node
-{
-    int data;
-    struct node* left;
-    struct node* right;
-};
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef unsigned long long llu;
+typedef vector <int> vi;
+typedef pair <int,int> pii;
+#define pb push_back
+#define mp make_pair
+#define gi(n) scanf("%d",&n)
+#define gl(n) scanf("%lld",&n)
+#define gs(n) scanf("%s",n);
+#define pi(n) printf("%d\n",n)
+#define pl(n) printf("%lld\n",n)
+#define ps(n) printf("%s\n",n);
+#define rep(i,n) for(int i=0;i<n;i++)
+#define fi(i,a,n) for(int i=a;i<=n;i++)
+#define fd(i,n,a) for(int i=n;i>=a;i--)
+#define input(f) freopen("f.txt","r",stdin)
 
-void printArray(int [], int);
-void printPathsRecur(struct node*, int [], int);
-struct node* newNode(int );
-void printPaths(struct node*);
-
-/* Given a binary tree, print out all of its root-to-leaf
-   paths, one per line. Uses a recursive helper to do the work.*/
-void printPaths(struct node* node)
-{
-  int path[1000];
-  printPathsRecur(node, path, 0);
-}
-
-/* Recursive helper function -- given a node, and an array containing
- the path from the root node up to but not including this node,
- print out all the root-leaf paths. */
-void printPathsRecur(struct node* node, int path[], int pathLen)
-{
-  if (node==NULL) return;
-
-  /* append this node to the path array */
-  path[pathLen] = node->data;
-  pathLen++;
-
-  /* it's a leaf, so print the path that led to here */
-  if (node->left==NULL && node->right==NULL)
-  {
-    printArray(path, pathLen);
-  }
-  else
-  {
-  /* otherwise try both subtrees */
-    printPathsRecur(node->left, path, pathLen);
-    printPathsRecur(node->right, path, pathLen);
-  }
-}
-
-/* Helper function that allocates a new node with the
-   given data and NULL left and right pointers. */
-struct node* newNode(int data)
-{
-  struct node* node = (struct node*)
-                       malloc(sizeof(struct node));
-  node->data = data;
-  node->left = NULL;
-  node->right = NULL;
-
-  return(node);
-}
-
-/* Utility that prints out an array on a line */
-void printArray(int ints[], int len)
-{
-  int i;
-  for (i=0; i<len; i++) {
-    printf("%d ", ints[i]);
-  }
-  printf("\n");
-}
-
-/* Driver program to test mirror() */
 int main()
 {
-  struct node *root = newNode(1);
-  root->left        = newNode(2);
-  root->right       = newNode(3);
-  root->left->left  = newNode(4);
-  root->left->right = newNode(5);
+    //freopen("i.txt","r",stdin);
 
-  /* Print all root-to-leaf paths of the input tree */
-  printPaths(root);
+    int t,n,i,j,k,b;
+    int a[110][110];
+    int dp[110][110];
+    //scanf("%d",&t);
+    //while(t--)
+    {
+        cin>>n>>m;
+        //scanf("%d",&n);
+        int cnt=0;
+        for(i=0;i<m;i++)
+        {
+            for(j=0;j<=n;j++)
+            {
 
-  getchar();
-  return 0;
+                //uint32_t b = g_fi.ReadNext();
+                cin>>a[j][i];
+                //a[i][j]=b;
+            }
+        }
+
+        for(i=n-1;i>=0;i--)
+        {
+            for(j=0;j<=i;j++)
+            {
+                if(i==(n-1)){dp[i][j]=a[i][j];}
+                else
+                {
+
+                    int temp=max(dp[i+1][j],dp[i+1][j+1]);
+                    dp[i][j]=a[i][j] + temp;
+
+                }
+            }
+
+        }
+
+        printf("%d\n",dp[0][0]);
+    }
+	return 0;
+    //fclose(stdin);
+	return 0;
 }
