@@ -17,7 +17,7 @@ int myCompare(string X, string Y)
  
     // Now see which of the two formed numbers is greater
     //return XY.compare(YX) > 0 ? 1: 0;
-    return XY>YX;
+    return X>Y;
 }
  
 // The main function that prints the arrangement with the largest value.
