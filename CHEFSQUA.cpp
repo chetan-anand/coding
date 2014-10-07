@@ -17,16 +17,19 @@ typedef pair <int,int> pii;
 #define fd(i,n,a) for(int i=n;i>=a;i--)
 #define input(f) freopen("f.txt","r",stdin)
 #define round(a) (int)(a+0.5)
+
+
 int main()
 {
     //freopen("i.txt","r",stdin);
 	int i,j,k,n;
 	int x[3000],y[3000];
+	se
 	//cin>>n;
 	double test;
 	cin>>test;
 	cout<<round(test)<<endl;
-	/*rep(i,n)
+	rep(i,n)
 	{
 		cin>>x[i]>>y[i];
 	}
@@ -34,9 +37,10 @@ int main()
 	{
 		fi(j,i+1,n-1)
 		{
-
+			double x= (double)(x[i]+x[j])/(double)2;
+			x+=
 		}
-	}*/
+	}
 
     //fclose(stdin);
 	return 0;
