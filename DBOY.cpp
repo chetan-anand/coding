@@ -19,45 +19,24 @@ typedef pair <int,int> pii;
 
 int main()
 {
-	int i,j,k,n,p;
-	int dp[110000];
-	memset(dp,0,sizeof(dp));
-	pair<int,int> a[110000];
-	cin>>n>>k>>p;
-	rep(i,n)
+    //freopen("i.txt","r",stdin);
+	int t,i,j,k[200],h[200];
+	cin>>t;
+	while(t--)
 	{
-		int temp;
-		cin>>temp;
-		a[i]=make_pair(temp,i);
-	}
-	sort(a,a+n);
-	int cnt=0;
-	dp[a[0].second]=cnt;
-	fi(i,1,n-1)
-	{
-		if(a[i].first-a[i-1].first<=k)
+		int n;
+		cin>>n;
+		int maxv=INT_MIN;
+		rep(i,n)
 		{
-			dp[a[i].second]=cnt;
+			cin>>h[i];
+			maxv=max(maxv,h[i]);
 		}
-		else
+		rep(i,n)
 		{
-			cnt++;
-			dp[a[i].second]=cnt;
+			cin>>k[]
 		}
 	}
-
-	/*rep(i,n)
-	{
-		cout<<dp[a[i].second]<<endl;
-	}*/
-	while(p--)
-	{
-		int a,b;
-		cin>>a>>b;
-		if(dp[a-1]==dp[b-1])
-			cout<<"Yes"<<endl;
-		else
-			cout<<"No"<<endl;
-	}
+    //fclose(stdin);
 	return 0;
 }
