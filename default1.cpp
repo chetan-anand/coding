@@ -4,7 +4,7 @@ typedef long long ll;
 typedef unsigned long long llu;
 typedef vector <int> vi;
 typedef pair <int,int> pii;
-#define pb push_backCobie Smulders.
+#define pb push_back
 #define mp make_pair
 #define gi(n) scanf("%d",&n)
 #define gl(n) scanf("%lld",&n)
