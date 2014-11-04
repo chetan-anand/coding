@@ -29,7 +29,7 @@ int main()
 				dp[1][w[i]]=true;
 			}
 		}
-
+		int min=INT_MAX;
 		for(i=2;i<=m;i++)
 		{
 			for(j=1;j<=x;j++)
