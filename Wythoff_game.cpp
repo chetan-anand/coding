@@ -56,21 +56,17 @@ int main()
 					dp[i][j]=-1;
 					col[i]=1;
 					row[i]=1;
-					for(int k=i+1,k<=1000;k++)
+					for(int k=i+1;k<=1000;k++)
 					{
 						dp[k][j]=1;
 					}
-					for(int k=j+1,k<=1000;k++)
+					for(int k=j+1;k<=1000;k++)
 					{
 						dp[i][k]=1;
 					}
-					for (int k=0;k<=1000; ++k)
+					for (int k=0;max(i+1+k,j+1+k)<=990; ++k)
 					{
-						/* code */
-						if(min(i+1+k||j+1+k)<=1000)
-						{
-							dp[i+1+k][j+1+k]=1;
-						}
+						dp[i+1+k][j+1+k]=1;
 					}
 				}
 			}
