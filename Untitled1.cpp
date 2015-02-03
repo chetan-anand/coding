@@ -1,46 +1,52 @@
-#include<bits/stdc++.h>
-using namespace std;
-typedef long long ll;
-typedef unsigned long long llu;
-typedef vector <int> vi;
-typedef pair <int,int> pii;
-#define pb push_back
-#define mp make_pair
-#define gi(n) scanf("%d",&n)
-#define gl(n) scanf("%lld",&n)
-#define gs(n) scanf("%s",n);
-#define pi(n) printf("%d\n",n)
-#define pl(n) printf("%lld\n",n)
-#define ps(n) printf("%s\n",n);
-#define rep(i,n) for(int i=0;i<n;i++)
-#define fi(i,a,n) for(int i=a;i<=n;i++)
-#define fd(i,n,a) for(int i=n;i>=a;i--)
-#define input(f) freopen("f.txt","r",stdin)
-
-int main()
+#include<stdio.h>
+#include<math.h>
+#define pi 3.14
+void menu()
 {
-    //freopen("i.txt","r",stdin);
-    string str;
-    cin>>str;
-    int x=0,y=0;
-    rep(i,str.size())
-    {
-        if(str[i]=='a')
-        {
+    printf("\nSelect yor choice \n");
+	printf("1. Area of circle  \n");
+	printf("2.  \n");
 
-            x++;y=max(x,y);
-        }
-        else{
-            x=0;
-        }
-    }
-    rep(i,y+1)
-    {
-
-        cout<<"a";
-    }
-    cout<<endl;
-    //fclose(stdin);
-	return 0;
+	printf("3. Exit \n");
 }
+void AreaCircle()
+{
+    float r;
+    printf("Enter the radius of circle ");
+    scanf("%f",&r);
+    float area;
+    area=pi*r*r;
+    printf("Area of circle is %f\n",area);
 
+}
+int main()
+
+{
+	char n;
+
+	 do
+	 {
+	 menu();
+	 scanf("%c",&n);
+
+	 switch(n)
+	 {
+
+	 	case '1':
+	 		AreaCircle();
+	 			break;
+
+	    case'2':
+
+	    	break;
+	    default :
+	   	printf("Exit");
+
+
+	 }
+       }
+      while(n!='3');
+
+  return 0;
+
+}
