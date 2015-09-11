@@ -137,6 +137,15 @@ void updateST(int cur, int s, int e, int _x, int _v, int _nodeNo, int _toAdd, bo
 
 
 
+void newupdateST(int cur,int s,int e,int _x,int _v,int _nodeNo,int _toAdd,bool _forceIt,node *ST) {
+	x= _x;
+	v = _v;
+	nodeNo = _nodeNo;
+	toAdd=_toAdd;
+	forceIt=_forceIt;
+	updateST(cur,s,e,ST);
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 node wasteNode = (node) { -1, -1 };
@@ -276,6 +285,20 @@ void treeUpdate(int nodeNo, bool wasteIt = false) {
 		curDistance++;
 	}
 }
+
+int num_of_set_bits(int x)
+{
+	int cnt=0;
+	for (int i = 0; i < 32; ++i)
+	{
+		/* code */
+		if(x&(1<<i))
+		{
+			cnt++;
+		}
+	}
+	return cnt;
+}
  
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 int quenum = 0;
@@ -312,12 +335,24 @@ void solve() {
 	gi(n); gi(m);
 	rep(i,n+10) last[i] = 0, isBlack[i] = false;
 	parent[1] = -1;			// 1 is the root of every tree
-	fu(i,2,n) gi(parent[i]);
-	fu(i,2,n) addEdge(parent[i], i);
+	//fu(i,2,n) gi(parent[i]);
+	for(int i=2;i<=n;i++)
+	{
+		gi(parent[i]);
+	}
+
+	//fu(i,2,n) addEdge(parent[i], i);
+
+	for(int i=2;i<=n;i++)
+	{
+		gi(parent[i]);
+	}
 	dfs(1);
-	HLD(1);last
+	HLD(1);
  
-	fu(i,1,n) {
+	//fu(i,1,n) 
+	for(int i=1;i<=n;i++)
+	{
 		int ind = chainInd[i];
 		addend[i] = chainSize[ind] - chainPos[i];
 	}
@@ -361,8 +396,14 @@ void solve() {
 int main() {
 	int t;
 	gi(t);
-	while(t--) solve();
+	/*while(t--) solve();
 	// while(double(clock())/CLOCKS_PER_SEC < 2.0);
-	fwrite(OUT, optr-OUT, 1, stdout);
+	fwrite(OUT, optr-OUT, 1, stdout);*/
+	while(t--)
+	{
+		int x;
+		gi(x);
+		cout<<num_of_set_bits(x)<<endl;
+	}
 	return 0;
 } 
